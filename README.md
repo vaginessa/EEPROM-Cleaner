@@ -1,5 +1,6 @@
 # ESP8266 - EEPROM-Cleaner
-EEPROM-Cleaner for ESP8266-Boards.
+EEPROM-Cleaner for ESP8266-Boards
+
 ![EEPROM-Cleaner for ESP8266-Boards](https://raw.githubusercontent.com/schinfo/EEPROM-Cleaner/master/screenshots/EEPROM-Cleaner.jpg)
 
 ## Contents
