@@ -8,7 +8,7 @@ EEPROM-Cleaner for ESP8266-Boards.
 
 ### How it works
 
-It erase the first, with maxByte defined xxx Bytes in the EEPROM of an ESP8266 - LoLin, etc.   
+It erase the first, with maxByte defined xxx Bytes, in the EEPROM of an ESP8266 - LoLin, etc.   
 
 
 ## Disclaimer
