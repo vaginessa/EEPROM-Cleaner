@@ -1,6 +1,6 @@
 /********************************************************************************************
 
-                       EEPROM-Cleaner v1.1.01
+                       EEPROM-Cleaner v1.1.02
 
                        Copyright (c) 2017 Helmut Stult (schinfo)
 
@@ -34,16 +34,18 @@ void setup()
 
   delay(100);
 
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
   Serial.println("");
-  Serial.print("             Write a char(255) / hex(FF) from byte ");
-  Serial.print(sizeBytes + startByte);
+  Serial.print("    Write a char(255) / hex(FF) from byte ");
+  Serial.print(startByte);
   Serial.print(" to ");
-  Serial.print(sizeBytes + endByte - 1);
-  Serial.print(" into the EEPROM");
+  Serial.print(endByte - 1);
+  Serial.print(" into the EEPROM with a defined size of ");
+  Serial.print("");
+  Serial.print(sizeBytes);
+  Serial.println(" Bytes");
   Serial.println("");
-  Serial.println("");
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
   Serial.println("");
 
   Serial.println("             testing EEPROM for written bytes");
@@ -61,14 +63,14 @@ void setup()
   Serial.printf("               empty bytes: %6d\r\n", ok);
   Serial.printf("           not empty bytes: %6d\r\n", nok);
   Serial.println("");
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
   Serial.println("");
 
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
   Serial.println("");
   Serial.println("             Start clearing EEPROM... - Please wait!!!");
   Serial.println("");
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
 
   delay(1000);
 
@@ -92,7 +94,7 @@ void setup()
       ++tok;
     }
   }
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
   Serial.println("");
   if (tok = endByte - startByte) {
     Serial.println("             EEPROM killed correctly");
@@ -100,11 +102,11 @@ void setup()
     Serial.println("             EEPROM not killed - ERROR !!!");
 
   Serial.println("");
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
   Serial.println("");
   Serial.println("             Ready - You can remove your ESP8266 / LoLin");
   Serial.println("");
-  Serial.println("**********************************************************************************************");
+  Serial.println("**********************************************************************************************************");
 }
 
 void loop()
