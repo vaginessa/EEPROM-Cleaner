@@ -1,7 +1,7 @@
-# ESP8266 - EEPROM-Reader
-EEPROM-Reader for ESP8266-Boards
+# ESP8266 - EEPROM-Cleaner
+EEPROM-Cleaner for ESP8266-Boards
 
-![EEPROM-Reader for ESP8266-Boards](https://raw.githubusercontent.com/schinfo/EEPROM-Reader/master/screenshots/Output-EEPROM-Reader)
+![EEPROM-Cleaner for ESP8266-Boards](https://raw.githubusercontent.com/schinfo/EEPROM-Cleaner/master/screenshots/EEPROM-Cleaner.jpg)
 
 ## Contents
 - [Disclaimer](#disclaimer)
@@ -11,16 +11,15 @@ EEPROM-Reader for ESP8266-Boards
 
 ## Disclaimer
 
-It shows the content of the EEPROM from an ESP8266.
-After using this sketch, your installed sketch is overwritten by this one.
-If you want back your old sketch, you must upload it to your ESP8266 once more.
+It's only for cleaning the EEPROM-setting (SSID, Password, ...) of "esp8266_deauther" from spacehuhn.
+After using this sketch, you have a clean ESP8266.
 
 You use it for your own risk!  
 
 
 ## How it works
 
-It reads and shows the content of the EEPROM in a CHAR- and HEX-Listing from an ESP8266 - LoLin, etc.   
+It erase the first, beginning with minByte + startByte, with maxByte defined xxx Bytes, in the EEPROM of an ESP8266 - LoLin, etc.   
 
 
 ## License
