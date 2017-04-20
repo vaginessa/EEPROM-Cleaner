@@ -1,6 +1,6 @@
 /********************************************************************************************
 
-                       EEPROM-Cleaner v1.1
+                       EEPROM-Cleaner v1.1.01
 
                        Copyright (c) 2017 Helmut Stult (schinfo)
 
@@ -9,9 +9,18 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
 
-#define minByte 4096 // change it for more or less Bytes (Default = 4096)
-#define maxByte 1200 // change it for more or less Bytes (Default = 1200)
-#define startByte 33 // change it for more or less Bytes (Default = 33)
+// sizeBytes being the number of bytes you want to use.
+// It's defined with "#define sizeBytes"
+// Size can be anywhere between 4 and 4096 bytes (Default for ESP8266_deauther = 4096)
+#define sizeBytes 4096
+
+// change it for lower or higher endByte (Default for ESP8266_deauther = 4096)
+// normaly it's the same as sizeBytes
+#define endByte 4096
+
+// change it for lower or higher startByte (Default = 32)
+// I don't know, for what the first 32 bytes are used - so I don't clean them!
+#define startByte 32
 
 unsigned long ok = 0;
 unsigned long nok = 0;
@@ -21,26 +30,26 @@ unsigned long tok = 0;
 void setup()
 {
   Serial.begin(115200);
-  EEPROM.begin(minByte);
+  EEPROM.begin(sizeBytes);
 
   delay(100);
 
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
   Serial.println("");
-  Serial.print("             Write a ""0"" from ");
-  Serial.print(minByte);
-  Serial.print(" to first ");
-  Serial.print(maxByte);
-  Serial.print(" bytes of the EEPROM");
+  Serial.print("             Write a char(255) / hex(FF) from byte ");
+  Serial.print(sizeBytes + startByte);
+  Serial.print(" to ");
+  Serial.print(sizeBytes + endByte - 1);
+  Serial.print(" into the EEPROM");
   Serial.println("");
   Serial.println("");
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
   Serial.println("");
 
   Serial.println("             testing EEPROM for written bytes");
   Serial.println("");
 
-  for (int i = startByte; i < maxByte; ++i)
+  for (int i = startByte; i < endByte; ++i)
   {
     if (EEPROM.read(i) == 255) {
       ++ok;
@@ -48,57 +57,54 @@ void setup()
       ++nok;
     }
   }
-  
-  Serial.print("                 empty bytes:   ");
-  Serial.println(ok);
-  Serial.print("             not empty bytes:   ");
-  Serial.println(nok);
+
+  Serial.printf("               empty bytes: %6d\r\n", ok);
+  Serial.printf("           not empty bytes: %6d\r\n", nok);
   Serial.println("");
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
   Serial.println("");
 
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
   Serial.println("");
   Serial.println("             Start clearing EEPROM... - Please wait!!!");
   Serial.println("");
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
 
-  delay(3000);
+  delay(1000);
 
-  // write a 0 to first maxByte bytes of the EEPROM
-  for (int i = startByte; i < maxByte; ++i) {
+  // write a char(255) / hex(FF) from startByte until endByte into the EEPROM
+  for (int i = startByte; i < endByte; ++i) {
     EEPROM.write(i, -1);
   }
 
   EEPROM.commit();
 
-  delay(2000);
+  delay(1000);
 
   Serial.println("");
   Serial.println("             testing EEPROM for clearing");
   Serial.println("");
 
   String test;
-  for (int i = startByte; i < maxByte; ++i)
+  for (int i = startByte; i < endByte; ++i)
   {
     if (EEPROM.read(i) == 255) {
       ++tok;
     }
-    test += char(EEPROM.read(i));
   }
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
   Serial.println("");
-  if (tok = maxByte - startByte) {
+  if (tok = endByte - startByte) {
     Serial.println("             EEPROM killed correctly");
   } else
     Serial.println("             EEPROM not killed - ERROR !!!");
 
   Serial.println("");
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
   Serial.println("");
   Serial.println("             Ready - You can remove your ESP8266 / LoLin");
   Serial.println("");
-  Serial.println("**************************************************************************");
+  Serial.println("**********************************************************************************************");
 }
 
 void loop()
