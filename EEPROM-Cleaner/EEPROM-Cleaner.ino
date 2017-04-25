@@ -1,6 +1,6 @@
 /********************************************************************************************
 
-                       EEPROM-Cleaner v1.1.02
+                       EEPROM-Cleaner v1.2.0
 
                        Copyright (c) 2017 Helmut Stult (schinfo)
 
@@ -18,9 +18,8 @@
 // normaly it's the same as sizeBytes
 #define endByte 4096
 
-// change it for lower or higher startByte (Default = 32)
-// I don't know, for what the first 32 bytes are used - so I don't clean them!
-#define startByte 32
+// change it for lower or higher startByte (Default = 0)
+#define startByte 0
 
 unsigned long ok = 0;
 unsigned long nok = 0;
